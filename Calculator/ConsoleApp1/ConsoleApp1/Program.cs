@@ -19,13 +19,25 @@ void Calculator()
 
             Console.Write("Math sign: ");
             action = char.Parse(Console.ReadLine());
-        }
-        catch
-        {
-            Console.WriteLine("Invalid value or math sign was entered");
-            Console.ReadLine();
-            continue; //якщо помилка повертаємось до вайл впочаток коду
-        }
+ }
+ catch (OutOfMemoryException e)
+ {
+     Console.WriteLine($"Error!Out of memory{e.Message}");
+     Console.ReadLine();
+     continue;
+ }
+ catch (FormatException)
+ {
+     Console.WriteLine("Error!Invalid number or math sign format");
+     Console.ReadLine();
+     continue;
+ }
+ catch (Exception e)
+ {
+     Console.WriteLine("Oops, something is wrong");
+     Console.ReadLine();
+     continue;
+ }
         switch (action)
         {
             case '+':
